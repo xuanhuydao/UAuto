@@ -15,7 +15,7 @@ class ADBError extends Error {
     }
 }
 
-export class ADBClient {
+export class ADBService {
     constructor(options = {}) {
         this.options = {
             bin: 'adb',
@@ -96,10 +96,3 @@ export class ADBClient {
         }
     }
 }
-
-const adbService = new ADBClient()
-const devices = await adbService.listDevices()
-console.log(devices)
-
-const [a] = devices
-console.log(a.id)

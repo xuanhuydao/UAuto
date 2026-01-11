@@ -2,13 +2,12 @@ import { remote } from "webdriverio"
 import { execFile } from "child_process"
 import { promisify } from "util"
 
-import { ADBClient } from "./src/infra/adb/adb-client.js"
-import { PortManager } from "./src/infra/port/port-manager.js"
+import { ADBService } from "./src/infra/adb/adb.service.js"
+import { PortManager } from "./src/core/port/port-manager.js"
 import { TaskPool } from "./src/core/utils/task-pool.js"
-import { AppiumService } from "./src/infra/appium/appium-service.js"
+import { AppiumService } from "./src/infra/appium/appium.service.js"
 
-// (Tuỳ chọn) nếu bạn muốn tự start Appium server
-// import { AppiumService } from "./src/infra/appium/appium-service.js"
+
 const execFileAsync = promisify(execFile)
 
 const PORT_ARGS = {
@@ -31,7 +30,7 @@ const APPIUM_ENDPOINT = {
 const CONCURRENCY = 5
 
 const appiumService = new AppiumService('127.0.0.1', 4723)
-const adbClient = new ADBClient()
+const adbService = new ADBService()
 const portManager = new PortManager(PORT_ARGS)
 const pool = new TaskPool(CONCURRENCY)
 
@@ -107,9 +106,9 @@ async function main() {
   // (Tuỳ chọn) start Appium server
   // await appiumService.startServer()
 
-  await adbClient.ensureReady()
+  await adbService.ensureReady()
 
-  const rawDevices = await adbClient.listDevices()
+  const rawDevices = await adbService.listDevices()
   const devices = rawDevices.filter(d => d.type === "device") // chỉ lấy device ready
 
   console.log(`Found ${devices.length} ready devices. Concurrency=${CONCURRENCY}`)

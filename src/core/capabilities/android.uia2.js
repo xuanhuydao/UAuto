@@ -10,7 +10,7 @@ export function buildAndroidUia2Caps({
     const caps = {
         platformName: "Android",
         "appium:automationName": "UiAutomator2",
-        "appium:uuid": deviceId,
+        "appium:udid": deviceId,
         "appium:deviceName": deviceId,
         "appium:systemPort": ports.systemPort,
     }

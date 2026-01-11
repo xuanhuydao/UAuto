@@ -2,9 +2,9 @@ import { execFile } from "child_process";
 import { promisify } from "util";
 import { remote } from "webdriverio";
 
-import { ADBClient } from "../infra/adb/adb-client.js";
-import { PortManager } from "../infra/port/port-manager.js";
-import { AppiumService } from "../infra/appium/appium-service.js";
+import { ADBService } from "../infra/adb/adb.service.js";
+import { PortManager } from "../core/port/port-manager.js";
+import { AppiumService } from "../infra/appium/appium.service.js";
 
 import { TaskPool } from "../core/utils/task-pool.js";
 import { SessionService } from "../core/session/session.service.js";
@@ -56,7 +56,7 @@ function makeWdioClient() {
 async function main() {
   // ===== infra =====
   const appiumService = new AppiumService(APPIUM_HOST, APPIUM_PORT);
-  const adbClient = new ADBClient();
+  const adbService = new ADBService();
   const portManager = new PortManager(PORT_ARGS);
 
   // start appium
@@ -64,10 +64,10 @@ async function main() {
   if (!ok) throw new Error("Cannot start Appium server");
 
   // ensure adb
-  await adbClient.ensureReady();
+  await adbService.ensureReady();
 
   // list devices
-  const rawDevices = await adbClient.listDevices();
+  const rawDevices = await adbService.listDevices();
   const devices = rawDevices.filter((d) => d.type === "device"); // chỉ device ready
 
   console.log(`Found ${devices.length} ready devices`);
