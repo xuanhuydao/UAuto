@@ -1,0 +1,18 @@
+{
+  "name": "uautohelper",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@devicefarmer/adbkit": "^3.3.8",
+    "appium": "^3.1.2",
+    "webdriverio": "^9.23.0"
+  }
+}
