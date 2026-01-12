@@ -127,4 +127,6 @@ async function main() {
   // await appiumService.stopServer()
 }
 
-await main()
+//await main()
+
+
