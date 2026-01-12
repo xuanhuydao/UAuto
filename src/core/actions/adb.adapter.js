@@ -4,9 +4,9 @@ export function normalizeAdb(adbService) {
     if( typeof adbService.executeShellCommand === 'function') {
         return {
             ...adbService,
-            shell: (deviceId, cmd) => adbService.excuteShellCommand(deviceId, cmd)
+            shell: (deviceId, cmd) => adbService.executeShellCommand(deviceId, cmd)
         }
     }
 
-    throw new Error('ADB Adapter: missing excuteShellCommnad()')
+    throw new Error('ADB Adapter: missing executeShellCommnad()')
 }

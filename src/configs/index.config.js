@@ -1,0 +1,1 @@
+export const APPIUM_HOME = `C:\\Users\\huy10\\.appium`

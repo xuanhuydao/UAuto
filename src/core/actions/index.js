@@ -21,5 +21,5 @@ export function createActions(baseCtx) {
 
 
     //ctx.device ctx.net
-    return { ctx, ctx, ui: ctx.ui, expect: ctx.expect, app: ctx.app }
+    return { ctx, ui: ctx.ui, expect: ctx.expect, app: ctx.app }
 }

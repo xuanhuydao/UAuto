@@ -42,14 +42,14 @@ export function createAppActions(ctx) {
         const id = pkg(appId)
         if (!adb.shell) throw new Error('app.actions:: clearData requires ctx.adb.shell(deviceId, cmd)')
 
-        return step(`app.clearData ${id}`, async () => {
+        return ctx.step(`app.clearData ${id}`, async () => {
             await adb.shell(ctx.deviceId, `pm clear ${id}`)
             return true
         })
     }
 
     async function startActivity({ appId, activity, wait = true }) {
-        const id = pkg(id)
+        const id = pkg(appId)
         if (!adb.shell) throw new Error('app.actions:: startActivity requires ctx.adb.shell(deviceId, cmd)')
         if (!activity) throw new Error('app.actions:: missing activity')
 

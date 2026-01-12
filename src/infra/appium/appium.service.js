@@ -1,5 +1,5 @@
 import appium from "appium"
-
+import { APPIUM_HOME } from "../../configs/index.config.js"
 const { main } = appium
 
 export class AppiumService {
@@ -18,11 +18,11 @@ export class AppiumService {
             const args = {
                 address: this.address,
                 port: this.port,
-                appiumHome: `C:\\Users\\huy10\\.appium`
+                appiumHome: APPIUM_HOME
             }
             this.server = await main(args)
             console.log(`Appium server is running at http://${this.address}:${this.port}/`)
-            
+
             return true
         } catch (error) {
             console.log('Failed to start appium server: ', error)
