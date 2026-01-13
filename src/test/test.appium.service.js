@@ -118,7 +118,7 @@ async function main() {
       console.log(`[${deviceId}] ✅ session ready (systemPort=${systemPort ?? "?"})`);
 
       // ===== Demo actions =====
-      const el = await driver.$('//*[@text="System Apps"]');
+      const el = await driver.$('//*[@text="Lite"]');
       await el.waitForDisplayed({ timeout: 15000 });
       await el.click();
       console.log(`[${deviceId}] ✅ click ok`);

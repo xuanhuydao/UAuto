@@ -22,7 +22,7 @@ export function createExpectActions(ctx) {
             await ui.waitVisible(selector, opts)
             return true
         } catch (error) {
-            throw wrapError(error, `Expect.visible failed ${selector}`)
+            throw wrapError(error, `expect.actions.visible failed ${selector}`)
         }
     }
 
@@ -31,7 +31,7 @@ export function createExpectActions(ctx) {
             await ui.waitGone(selector, { timeoutMs })
             return true
         } catch (error) {
-            throw wrapError(error, `expect.notVisible failed (${selector})`);
+            throw wrapError(error, `expect.actions.notVisible failed (${selector})`);
         }
     }
 
@@ -39,7 +39,7 @@ export function createExpectActions(ctx) {
         return ctx.step(`expect.textContains ${selector}`, async () => {
             const actual = await ui.text(selector, opts)
             if (!String(actual).includes(String(expected))) {
-                throw wrapError(`Text not contains.\nExpected: ${expected}\nActual: ${actual}`)
+                throw wrapError('expect.actions:: ',`Text not contains.\nExpected: ${expected}\nActual: ${actual}`)
             }
 
             return true

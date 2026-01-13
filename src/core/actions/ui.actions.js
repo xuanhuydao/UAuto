@@ -23,7 +23,7 @@ export function createUiActions(ctx) {
     const $ = async (selector) => await driver.$(selector)
     const $$ = async (selector) => await driver.$$(selector)
 
-    async function waitVisible(selector, { timeoutMs = defaultTimeoutMs, intervalMs = 500 }) {
+    async function waitVisible(selector, { timeoutMs = defaultTimeoutMs, intervalMs = 500 } = {}) {
         return ctx.step(`ui.waitVisible ${selector}`, async () => {
             const el = await $(selector)
             await el.waitForDisplayed({ timeout: timeoutMs, interval: intervalMs })
@@ -122,7 +122,7 @@ export function createUiActions(ctx) {
         })
     }
 
-    async function tapWithRetry(selector, { times = 2, delayMs = 500, timeoutMs = defaultTimeoutMs }) {
+    async function tapWithRetry(selector, { times = 2, delayMs = 500, timeoutMs = defaultTimeoutMs } = {}) {
         return ctx.step(`ui.tapWithRetry ${selector}`, async () => {
             try {
                 return await retry(() => tap(selector, { timeoutMs }), { times, delayMs })

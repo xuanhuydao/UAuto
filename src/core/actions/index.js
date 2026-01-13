@@ -12,7 +12,7 @@ export function createActions(baseCtx) {
     }
 
     ctx.adb = normalizeAdb(ctx.adb)
-    ctx.step = makeStepRunner({ deviceId: ctx.deviceId ?? "unknow", logger: ctx.logger })
+    ctx.step = makeStepRunner({ deviceId: ctx.deviceId ?? "unknown", logger: ctx.logger })
 
     ctx.ui = createUiActions(ctx)
     ctx.expect = createExpectActions(ctx)
